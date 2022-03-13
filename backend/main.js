@@ -11,6 +11,16 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.get('/users', (req, res) => {
+    res.json(users)
+})
+
+app.get('/users/:id', (req, res) => {
+    res.json(users.find(user => user.id === Number(req.params.id)))
+})
+
+
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
