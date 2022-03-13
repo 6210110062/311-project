@@ -19,6 +19,11 @@ app.get('/users/:id', (req, res) => {
     res.json(users.find(user => user.id === Number(req.params.id)))
 })
 
+app.post('/users', (req, res) => {
+    users.push(req.body)
+    let json = req.body
+    res.send(`Add new user '${json.username}' completed.`)
+})
 
 
 app.listen(port, () => {
