@@ -37,6 +37,10 @@ app.post('/users', (req, res) => {
     res.send(`Add new user '${json.username}' completed.`)
 })
 
+app.delete('/users/:id', (req, res) => {
+    const deletedIndex = users.findIndex(user => user.id === Number(req.params.id))
+    res.send(`Delete user '${users[deletedIndex].username}' completed.`)
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
