@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import Home from "./Home";
+import add2 from "./add2";
 
 export default class Facebook extends Component {
   state = {
@@ -27,7 +28,9 @@ export default class Facebook extends Component {
 
   render() {
     let fbContent;
-
+    <div>
+      <add2 />
+    </div>
     if (this.state.isLoggedIn) {
       fbContent = (
         <div
@@ -43,7 +46,6 @@ export default class Facebook extends Component {
           <h2>Welcome {this.state.name}</h2>
           Email: {this.state.email}
           <Home />
-
         </div>
 
 
