@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 
+
 export default class Facebook extends Component {
   state = {
     isLoggedIn: false,
@@ -31,17 +32,23 @@ export default class Facebook extends Component {
       fbContent = (
         <div
           style={{
-            width: "400px",
-            margin: "auto",
+            width: "500px",
+            margin: "auto auto",
             background: "#f4f4f4",
-            padding: "20px"
+            padding: "50px",
           }}
         >
+
           <img src={this.state.picture} alt={this.state.name} />
           <h2>Welcome {this.state.name}</h2>
           Email: {this.state.email}
+          <Home />
+
         </div>
+
+
       );
+
     } else {
       fbContent = (
         <FacebookLogin
