@@ -1,68 +1,22 @@
-import React, { Component } from "react";
-import FacebookLogin from "react-facebook-login";
-import Home from "./Home";
-import add2 from "./add2";
+import { Component } from 'react';
+import Login from './Login';
+import './App.css'
 
-export default class Facebook extends Component {
-  state = {
-    isLoggedIn: false,
-    userID: "",
-    name: "",
-    email: "",
-    picture: ""
-  };
 
-  responseFacebook = response => {
-    // console.log(response);
-
-    this.setState({
-      isLoggedIn: true,
-      userID: response.userID,
-      name: response.name,
-      email: response.email,
-      picture: response.picture.data.url
-    });
-  };
-
-  componentClicked = () => console.log("clicked");
-
+class App extends Component {
   render() {
-    let fbContent;
-    <div>
-      <add2 />
-    </div>
-    if (this.state.isLoggedIn) {
-      fbContent = (
-        <div
-          style={{
-            width: "500px",
-            margin: "auto auto",
-            background: "#f4f4f4",
-            padding: "50px",
-          }}
-        >
+    return (
+      <div className="App">
+        <header className="title">
+          <h2 className="App-title">Homepage</h2>
+        </header>
+        <p className="App-intro">
+          sign in with facebook
+        </p>
+        <Login />
 
-          <img src={this.state.picture} alt={this.state.name} />
-          <h2>Welcome {this.state.name}</h2>
-          Email: {this.state.email}
-          <Home />
-        </div>
-
-
-      );
-
-    } else {
-      fbContent = (
-        <FacebookLogin
-          appId="1111795056055256"
-          autoLoad={true}
-          fields="name,email,picture"
-          onClick={this.componentClicked}
-          callback={this.responseFacebook}
-        />
-      );
-    }
-
-    return <div>{fbContent}</div>;
+      </div>
+    );
   }
 }
+export default App;
