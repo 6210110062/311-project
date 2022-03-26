@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 
+
 export default class Facebook extends Component {
     state = {
         isLoggedIn: false,
@@ -39,6 +40,13 @@ export default class Facebook extends Component {
                 >
                     <img src={this.state.picture} alt={this.state.name} />
                     <h2>Welcome {this.state.name}</h2>
+                    <form>
+                        <fieldset>
+                            <legend>ADD POST</legend>
+                            <input type="text" name="post" />
+                            <button>SUBMIT</button>
+                        </fieldset>
+                    </form>
                 </div>
             );
         } else {
@@ -54,5 +62,6 @@ export default class Facebook extends Component {
         }
 
         return <div>{fbContent}</div>;
+
     }
 }

@@ -1,22 +1,17 @@
-import { Component } from 'react';
-import Login from './Login';
+
+//import Login from './Login';
 import './App.css'
+import Navbar from './Navbar';
+import User from './User';
 
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="title">
-          <h2 className="App-title">Homepage</h2>
-        </header>
-        <p className="App-intro">
-          sign in with facebook
-        </p>
-        <Login />
-
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <Navbar />
+      <User />
+    </div>
+  );
 }
+
+
 export default App;

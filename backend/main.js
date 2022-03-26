@@ -1,46 +1,56 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+import express from "express"
+import bodyParser from "body-parser"
+import cors from "cors"
 const app = express()
-const port = 3000
-const users = require('./info')
+const port = 3001
+//const users = require('./info')
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+import userRoutes from "./routes/users.js";
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+app.use(bodyParser.json());
+app.use(cors());
 
-app.post('/api/login', bodyParser.json(), async (req, res) => {
-    let token = req.body.token
-    let result = await axios.get('https://graph.facebook.com/me', {
-        params: {
-            fields: 'id,name,email',
-            access_token: token
-        }
+app.use('/', userRoutes);
 
-    })
-    console.log(result)
-    res.send({ ok: 1 })
-})
-app.get('/users', (req, res) => {
-    res.json(users)
-})
+app.get('/', (req, res) =>
+    res.send("hello"));
 
-app.get('/users/:id', (req, res) => {
-    res.json(users.find(user => user.id === Number(req.params.id)))
-})
+app.all("*", (req, res) =>
+    res.send("hello"));
 
-app.post('/users', (req, res) => {
-    users.push(req.body)
-    let json = req.body
-    res.send(`Add new user '${json.username}' completed.`)
-})
+//app.post('/api/login', bodyParser.json(), async (req, res) => {
+//  let token = req.body.token
+//  let result = await axios.get('https://graph.facebook.com/me', {
+//    params: {
+//      fields: 'id,name,email',
+//    access_token: token
+// }
 
-app.delete('/users/:id', (req, res) => {
-    const deletedIndex = users.findIndex(user => user.id === Number(req.params.id))
-    res.send(`Delete user '${users[deletedIndex].username}' completed.`)
-})
+// })
+// console.log(result)
+//res.send({ ok: 1 })
+//})
+
+
+//app.get('/users', (req, res) => {
+//    res.json(users)
+//})
+
+//
+//app.get('/users/:id', (req, res) => {
+//   res.json(users.find(user => user.id === Number(req.params.id)))
+//})
+
+//app.post('/users', (req, res) => {
+//    users.push(req.body)
+//   let json = req.body
+//    res.send(`Add new user '${json.username}' completed.`)
+//})
+
+//app.delete('/users/:id', (req, res) => {
+//  const deletedIndex = users.findIndex(user => user.id === Number(req.params.id))
+//   res.send(`Delete user '${users[deletedIndex].username}' completed.`)
+//})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
