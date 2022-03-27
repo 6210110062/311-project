@@ -31,27 +31,6 @@ app.all("*", (req, res) =>
 //res.send({ ok: 1 })
 //})
 
-
-//app.get('/users', (req, res) => {
-//    res.json(users)
-//})
-
-//
-//app.get('/users/:id', (req, res) => {
-//   res.json(users.find(user => user.id === Number(req.params.id)))
-//})
-
-//app.post('/users', (req, res) => {
-//    users.push(req.body)
-//   let json = req.body
-//    res.send(`Add new user '${json.username}' completed.`)
-//})
-
-//app.delete('/users/:id', (req, res) => {
-//  const deletedIndex = users.findIndex(user => user.id === Number(req.params.id))
-//   res.send(`Delete user '${users[deletedIndex].username}' completed.`)
-//})
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.listen(port, () =>
+    console.log(`Server is listening on port: http://localhost:${port}`)
+);

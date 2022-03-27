@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
-
+import Home from "./pages/Home";
 
 export default class Facebook extends Component {
     state = {
@@ -31,22 +31,10 @@ export default class Facebook extends Component {
         if (this.state.isLoggedIn) {
             fbContent = (
                 <div
-                    style={{
-                        width: "500px",
-                        margin: "auto",
-                        background: "#e0f9ff",
-                        padding: "60px"
-                    }}
                 >
                     <img src={this.state.picture} alt={this.state.name} />
                     <h2>Welcome {this.state.name}</h2>
-                    <form>
-                        <fieldset>
-                            <legend>ADD POST</legend>
-                            <input type="text" name="post" />
-                            <button>SUBMIT</button>
-                        </fieldset>
-                    </form>
+                    <Home />
                 </div>
             );
         } else {
