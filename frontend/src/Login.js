@@ -31,13 +31,14 @@ export default class Facebook extends Component {
         if (this.state.isLoggedIn) {
             fbContent = (
                 <div
-                >
-                    <img src={this.state.picture} alt={this.state.name} />
+                ><br></br>
+                    <img src={this.state.picture} alt={this.state.name} width="80" height="80" />
                     <h2>Welcome {this.state.name}</h2>
                     <Home />
                 </div>
             );
         } else {
+            <br></br>
             fbContent = (
                 <FacebookLogin
                     appId="1111795056055256"
