@@ -3,7 +3,7 @@ import bodyParser from "body-parser"
 import cors from "cors"
 const app = express()
 const port = 3001
-//const users = require('./info')
+
 
 import userRoutes from "./routes/users.js";
 

@@ -53,6 +53,14 @@ const AddEdit = () => {
     }
   };
 
+  const [ userList , setUserList ] = useState([]);
+
+    const getUser = () =>{
+        axios.get('http://localhost:3001/addUser').then((response)=>{
+            setUserList(response.data);
+        });
+    }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !email || !contact) {
@@ -110,6 +118,18 @@ const AddEdit = () => {
 
         <input type="submit" value={id ? "Update" : "Add"} />
       </form>
+      <div>
+        <button onClick={getUser}>show userList</button>
+        {userList.map((val,key)=>{
+          return(
+            <div>
+              <p>name:{val.name}</p>
+              <p>email:{val.email}</p>
+              <p>contact:{val.contact}</p>
+            </div>
+          )
+        })}
+      </div>
     </div>
   );
 };
