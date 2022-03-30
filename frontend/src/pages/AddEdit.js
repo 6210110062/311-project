@@ -82,7 +82,6 @@ const AddEdit = () => {
       } else {
         updateUser(state, id);
       }
-
       setTimeout(() => history.push("/"), 500);
     }
   };
@@ -108,7 +107,7 @@ const AddEdit = () => {
             setName(event.target.value)
           }}
         />
-
+        
         <label htmlFor="email">Email</label>
         <input
           type="email"

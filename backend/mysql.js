@@ -23,6 +23,15 @@ app.get('/addUser',(req, res)=>{
         }
     });
 });
+app.get('/view/:id',(req, res)=>{
+    db.query("SELECT id FROM addUser LIKE ':id'",(err,result)=>{
+        if (err){
+            console.log(err);
+        }else{
+            res.send(result);
+        }
+    });
+});
 app.post('/addUser',(req, res)=>{
     const name = req.body.name
     const email = req.body.email
