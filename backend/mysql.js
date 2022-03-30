@@ -23,7 +23,19 @@ app.get('/addUser',(req, res)=>{
         }
     });
 });
-
+app.post('/addUser',(req, res)=>{
+    const name = req.body.name
+    const email = req.body.email
+    const contact = req.body.contact
+    db.query("INSERT INTO addUser (name, email, contact) VALUES (?,?,?)",[name,email,contact],
+    (err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.send("Add User Success");
+        }
+    });
+})
 app.listen('3001',()=>{
     console.log('server is running on port 3001');
 })

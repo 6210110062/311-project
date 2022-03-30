@@ -12,7 +12,7 @@ const initialState = {
 
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
-  const { name, email, contact } = state;
+
 
   const history = useHistory();
 
@@ -39,12 +39,8 @@ const AddEdit = () => {
     });
   };
 
-  const addUser = async (data) => {
-    const response = await axios.post("http://localhost:3001/user", data);
-    if (response.status === 200) {
-      toast.success(response.data);
-    }
-  };
+  
+  
 
   const updateUser = async (data, id) => {
     const response = await axios.put(`http://localhost:3001/user/${id}`, data);
@@ -54,11 +50,26 @@ const AddEdit = () => {
   };
 
   const [ userList , setUserList ] = useState([]);
-
-    const getUser = () =>{
-        axios.get('http://localhost:3001/addUser').then((response)=>{
-            setUserList(response.data);
-        });
+  const [ name, setName ] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ contact, setContact ] = useState("");
+  const getUser = () =>{
+      axios.get('http://localhost:3001/addUser').then((response)=>{
+          setUserList(response.data);
+      });
+  }
+  const addUser = async (data) => {
+    const response = await axios.post("http://localhost:3001/addUser",{
+      name: name,
+      email: email,
+      contact: contact
+      }).then(()=>{
+        setUserList([...userList,{
+          name: name,
+          email: email,
+          contact: contact
+        }])
+      })
     }
 
   const handleSubmit = (e) => {
@@ -93,7 +104,9 @@ const AddEdit = () => {
           name="name"
           placeholder="Enter Name..."
           value={name}
-          onChange={handleInputChange}
+          onChange={(event)=>{
+            setName(event.target.value)
+          }}
         />
 
         <label htmlFor="email">Email</label>
@@ -103,7 +116,9 @@ const AddEdit = () => {
           name="email"
           placeholder="Enter Email..."
           value={email}
-          onChange={handleInputChange}
+           onChange={(event)=>{
+            setEmail(event.target.value)
+          }}
         />
 
         <label htmlFor="contact">Contact</label>
@@ -113,7 +128,9 @@ const AddEdit = () => {
           name="contact"
           placeholder="Enter Contact No. ..."
           value={contact}
-          onChange={handleInputChange}
+           onChange={(event)=>{
+            setContact(event.target.value)
+          }}
         />
 
         <input type="submit" value={id ? "Update" : "Add"} />
@@ -131,7 +148,5 @@ const AddEdit = () => {
         })}
       </div>
     </div>
-  );
-};
-
-export default AddEdit;
+  )
+};export default AddEdit;
