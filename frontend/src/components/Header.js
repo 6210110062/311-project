@@ -9,6 +9,8 @@ const Header = () => {
   useEffect(() => {
     if (location.pathname === "/") {
       setActiveTab("Home");
+    } else if (location.pathname === "/Login") {
+      setActiveTab("Login");
     } else if (location.pathname === "/add") {
       setActiveTab("AddUser");
     } else if (location.pathname === "/about") {
@@ -19,6 +21,14 @@ const Header = () => {
     <div className="header">
       <p className="logo">My Friends lists</p>
       <div className="header-right">
+        <Link to="/Login">
+          <p
+            className={`${activeTab === "Login" ? "active" : ""}`}
+            onClick={() => setActiveTab("Login")}
+          >
+            Login
+          </p>
+        </Link>
         <Link to="/">
           <p
             className={`${activeTab === "Home" ? "active" : ""}`}
@@ -27,6 +37,7 @@ const Header = () => {
             Home
           </p>
         </Link>
+
         <Link to="/add">
           <p
             className={`${activeTab === "AddUser" ? "active" : ""}`}
