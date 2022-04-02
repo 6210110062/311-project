@@ -12,7 +12,7 @@ const initialState = {
 
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
-
+  const { name, email, contact } = state;
 
   const history = useHistory();
 
@@ -39,8 +39,12 @@ const AddEdit = () => {
     });
   };
 
-  
-  
+  const addUser = async (data) => {
+    const response = await axios.post("http://localhost:3001/user", data);
+    if (response.status === 200) {
+      toast.success(response.data);
+    }
+  };
 
   const updateUser = async (data, id) => {
     const response = await axios.put(`http://localhost:3001/user/${id}`, data);
@@ -48,29 +52,6 @@ const AddEdit = () => {
       toast.success(response.data);
     }
   };
-
-  const [ userList , setUserList ] = useState([]);
-  const [ name, setName ] = useState("");
-  const [ email, setEmail ] = useState("");
-  const [ contact, setContact ] = useState("");
-  const getUser = () =>{
-      axios.get('http://localhost:3001/addUser').then((response)=>{
-          setUserList(response.data);
-      });
-  }
-  const addUser = async (data) => {
-    const response = await axios.post("http://localhost:3001/addUser",{
-      name: name,
-      email: email,
-      contact: contact
-      }).then(()=>{
-        setUserList([...userList,{
-          name: name,
-          email: email,
-          contact: contact
-        }])
-      })
-    }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,6 +63,7 @@ const AddEdit = () => {
       } else {
         updateUser(state, id);
       }
+
       setTimeout(() => history.push("/"), 500);
     }
   };
@@ -103,11 +85,9 @@ const AddEdit = () => {
           name="name"
           placeholder="Enter Name..."
           value={name}
-          onChange={(event)=>{
-            setName(event.target.value)
-          }}
+          onChange={handleInputChange}
         />
-        
+
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -115,9 +95,7 @@ const AddEdit = () => {
           name="email"
           placeholder="Enter Email..."
           value={email}
-           onChange={(event)=>{
-            setEmail(event.target.value)
-          }}
+          onChange={handleInputChange}
         />
 
         <label htmlFor="contact">Contact</label>
@@ -127,25 +105,13 @@ const AddEdit = () => {
           name="contact"
           placeholder="Enter Contact No. ..."
           value={contact}
-           onChange={(event)=>{
-            setContact(event.target.value)
-          }}
+          onChange={handleInputChange}
         />
 
         <input type="submit" value={id ? "Update" : "Add"} />
       </form>
-      <div>
-        <button onClick={getUser}>show userList</button>
-        {userList.map((val,key)=>{
-          return(
-            <div>
-              <p>name:{val.name}</p>
-              <p>email:{val.email}</p>
-              <p>contact:{val.contact}</p>
-            </div>
-          )
-        })}
-      </div>
     </div>
-  )
-};export default AddEdit;
+  );
+};
+
+export default AddEdit;
