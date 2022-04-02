@@ -20,7 +20,7 @@ const Home = () => {
 
   const onDeleteUser = async (id) => {
     if (
-      window.confirm("Are you sure that you wanted to delete that user record")
+      window.confirm("ยืนยันการลบข้อมูล")
     ) {
       const response = await axios.delete(`http://localhost:3001/user/${id}`);
       if (response.status === 200) {
@@ -33,14 +33,14 @@ const Home = () => {
   console.log("data=>", data);
 
   return (
-    <div style={{ marginTop: "150px" }}>
+    <div style={{ marginTop: "200px" }}>
       <table className="styled-table">
         <thead>
           <tr>
             <th style={{ textAlign: "center" }}>No.</th>
             <th style={{ textAlign: "center" }}>Name</th>
             <th style={{ textAlign: "center" }}>Email</th>
-            <th style={{ textAlign: "center" }}>Contact</th>
+            <th style={{ textAlign: "center" }}>age</th>
             <th style={{ textAlign: "center" }}>Action</th>
           </tr>
         </thead>
@@ -52,7 +52,7 @@ const Home = () => {
                   <th scope="row">{index + 1}</th>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
-                  <td>{item.contact}</td>
+                  <td>{item.age}</td>
                   <td>
                     <Link to={`/update/${item.id}`}>
                       <button className="btn btn-edit">Edit</button>

@@ -20,34 +20,34 @@ let users = [];
 
 const app = express();
 
-app.get('/users',authenticated,(req, res) =>{
+app.get('/users', authenticated, (req, res) => {
     res.send(users);
 })
 
-app.post('/user',authenticated,async(req, res) => {
+app.post('/user', authenticated, async (req, res) => {
     const user = req.body;
     users.push({ ...user, id: uuid() });
-    res.send(" Added ");
+    res.send(" เพิ่มสำเร็จ ");
 })
 
-app.get('/user/:id',authenticated,(req, res) => {
+app.get('/user/:id', authenticated, (req, res) => {
     const singleUser = users.filter((user) => user.id === req.params.id);
     res.send(singleUser);
 })
 
-app.delete('/user/:id',authenticated,(req, res) => {
+app.delete('/user/:id', authenticated, (req, res) => {
     users = users.filter((user) => user.id !== req.params.id);
-    res.send("Deleted");
+    res.send("ลบสำเร็จ");
 })
 
-app.put("/user/:id",authenticated, (req, res) => {
+app.put("/user/:id", authenticated, (req, res) => {
     const user = users.find((user) => user.id === req.params.id);
 
     user.name = req.body.name;
     user.email = req.body.email;
-    user.contact = req.body.contact;
+    user.age = req.body.age;
 
-    res.send(" Successfully");
+    res.send(" แก่ไขสำเร็จ");
 })
 
 export default app;

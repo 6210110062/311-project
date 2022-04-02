@@ -30,10 +30,10 @@ function Login() {
     return (
         <div>
             <br></br>
-            <p>Login with Facebook</p>
+            <h1>Login with Facebook</h1>
             <br></br>
             <FacebookLogin
-                appId="684445912999982"
+                appId="1111795056055256"
                 autoLoad={true}
                 fields="name,email,picture"
                 callback={responseFacebook} />
@@ -42,3 +42,5 @@ function Login() {
     );
 }
 export default Login;
+
+

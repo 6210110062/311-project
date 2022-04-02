@@ -7,12 +7,12 @@ import axios from "axios";
 const initialState = {
   name: "",
   email: "",
-  contact: "",
+  age: "",
 };
 
 const AddEdit = () => {
   const [state, setState] = useState(initialState);
-  const { name, email, contact } = state;
+  const { name, email, age } = state;
 
   const history = useHistory();
 
@@ -55,8 +55,8 @@ const AddEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !email || !contact) {
-      toast.error("Please provide value in each input field");
+    if (!name || !email || !age) {
+      toast.error("กรุณากรอกข้อมูลให้ครบ");
     } else {
       if (!id) {
         addUser(state);
@@ -98,13 +98,13 @@ const AddEdit = () => {
           onChange={handleInputChange}
         />
 
-        <label htmlFor="contact">Contact</label>
+        <label htmlFor="age">age</label>
         <input
           type="number"
-          id="contact"
-          name="contact"
-          placeholder="Enter Contact No. ..."
-          value={contact}
+          id="age"
+          name="age"
+          placeholder="Enter age ..."
+          value={age}
           onChange={handleInputChange}
         />
 

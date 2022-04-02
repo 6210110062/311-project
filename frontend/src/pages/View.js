@@ -27,7 +27,7 @@ const View = () => {
     <div style={{ marginTop: "150px" }}>
       <div className="card">
         <div className="card-header">
-          <p>User Contact Detail</p>
+          <p>User age Detail</p>
         </div>
         <div className="container">
           <strong>ID: </strong>
@@ -42,8 +42,8 @@ const View = () => {
           <span>{user && user.email} </span>
           <br />
           <br />
-          <strong>Contact: </strong>
-          <span>{user && user.contact} </span>
+          <strong>age: </strong>
+          <span>{user && user.age} </span>
           <br />
           <br />
           <Link to="/">

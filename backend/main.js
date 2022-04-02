@@ -3,7 +3,6 @@ import bodyParser from "body-parser"
 import cors from "cors"
 import jwt from "jsonwebtoken"
 import axios from "axios"
-import quotes from 'inspirational-quotes'
 const app = express()
 const port = 3001
 
@@ -24,8 +23,8 @@ const authenticated = (req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(cors());
-app.get('/hello',authenticated,(req,res)=>{
-    res.send(quotes.getQuote());
+app.get('/hello', authenticated, (req, res) => {
+    res.send("hello");
 })
 
 app.use('/', userRoutes);

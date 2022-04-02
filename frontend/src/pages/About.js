@@ -1,12 +1,12 @@
 import React from "react";
-import Quotes from './Quotes';
+
 
 const About = () => {
   return (
     <div style={{ marginTop: "150px" }}>
       <h2>
-        {" "}
-        <Quotes />
+        Chonthicha Kamwan 6210110062<br></br>
+        Nakin Jaroenfuprasert 6210110165
       </h2>
     </div>
   );

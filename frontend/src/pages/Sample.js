@@ -7,16 +7,16 @@ import { toast } from "react-toastify";
 const initialState = {
   name: "",
   email: "",
-  contact: "",
+  age: "",
 };
 
 const Sample = () => {
   const [state, setState] = useState(initialState);
 
-  const { name, email, contact } = initialState;
+  const { name, email, age } = initialState;
 
   const history = useHistory();
-  const addContact = async (data) => {
+  const addage = async (data) => {
     const response = await axios.post("http://localhost:3001/user", data);
     if (response.status === 200) {
       toast.success(response.data);
@@ -31,10 +31,10 @@ const Sample = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !email || !contact) {
-      toast.error("Please provide value into each input field");
+    if (!name || !email || !age) {
+      toast.error("กรุณากรอกข้อมูลให้ครบ");
     } else {
-      addContact(state);
+      addage(state);
       history.push("/");
     }
   };
@@ -68,14 +68,14 @@ const Sample = () => {
           onChange={handleInputChange}
           value={email}
         />
-        <label htmlFor="contact">Contact</label>
+        <label htmlFor="age">age</label>
         <input
           type="number"
-          id="contact"
-          name="contact"
-          placeholder="Your Contact No. ..."
+          id="age"
+          name="age"
+          placeholder="Your age No. ..."
           onChange={handleInputChange}
-          value={contact}
+          value={age}
         />
         <input type="submit" value="Add" />
       </form>
