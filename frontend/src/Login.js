@@ -1,56 +1,46 @@
-import React, { Component } from "react";
+
 import FacebookLogin from "react-facebook-login";
-import Home from "./pages/Home";
+import React from "react";
+import axios from 'axios';
 
-export default class Facebook extends Component {
-    state = {
-        isLoggedIn: false,
-        userID: "",
-        name: "",
-        email: "",
-        picture: ""
-    };
 
-    responseFacebook = response => {
-        // console.log(response);
+axios.interceptors.request.use(function (config) {
+    const token = sessionStorage.getItem('access_token')
+    if (token)
+        config.headers['Authorization'] = `Bearer ${token}`
+    return config
+}, function (err) {
+    return Promise.reject(err)
+})
 
-        this.setState({
-            isLoggedIn: true,
-            userID: response.userID,
-            name: response.name,
-            email: response.email,
-            picture: response.picture.data.url
-        });
-    };
+const responseFacebook = async (response) => {
+    if (response.accessToken) {
+        console.log('log in with accessToken= ' + response.accessToken)
+        let result = await axios.post('http://localhost:3001/api/login', {
+            token: response.accessToken
+        })
+        console.log(result.data)
+        sessionStorage.setItem('access_token', result.data.access_token)
 
-    componentClicked = () => console.log("clicked");
 
-    render() {
-        let fbContent;
-
-        if (this.state.isLoggedIn) {
-            fbContent = (
-                <div
-                ><br></br>
-                    <img src={this.state.picture} alt={this.state.name} width="80" height="80" />
-                    <h2>Welcome {this.state.name}</h2>
-                    <Home />
-                </div>
-            );
-        } else {
-            <br></br>
-            fbContent = (
-                <FacebookLogin
-                    appId="1111795056055256"
-                    autoLoad={true}
-                    fields="name,email,picture"
-                    onClick={this.componentClicked}
-                    callback={this.responseFacebook}
-                />
-            );
-        }
-
-        return <div>{fbContent}</div>;
 
     }
+
 }
+function Login() {
+
+    return (
+        <div>
+            <br></br>
+            <p>Login with Facebook</p>
+            <br></br>
+            <FacebookLogin
+                appId="1111795056055256"
+                autoLoad={true}
+                fields="name,email,picture"
+                callback={responseFacebook} />
+        </div>
+
+    );
+}
+export default Login;
