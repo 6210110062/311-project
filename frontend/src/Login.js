@@ -3,7 +3,6 @@ import FacebookLogin from "react-facebook-login";
 import React from "react";
 import axios from 'axios';
 
-
 axios.interceptors.request.use(function (config) {
     const token = sessionStorage.getItem('access_token')
     if (token)
@@ -22,11 +21,10 @@ const responseFacebook = async (response) => {
         console.log(result.data)
         sessionStorage.setItem('access_token', result.data.access_token)
 
-
-
     }
 
 }
+
 function Login() {
 
     return (
@@ -35,7 +33,7 @@ function Login() {
             <p>Login with Facebook</p>
             <br></br>
             <FacebookLogin
-                appId="1111795056055256"
+                appId="684445912999982"
                 autoLoad={true}
                 fields="name,email,picture"
                 callback={responseFacebook} />
