@@ -12,7 +12,7 @@ if ( !existsSync(logDir) ) {
 const logFile = join(logDir, logName);
 transports.push(new _transports.File({ filename: logFile }));// 5
 const logger = new createLogger({
-  level: 'debug',
+  level: 'info',
   format: _format.combine(
     _format.timestamp({format: 'YYYY-MM-DD HH:mm:ss'}),
     _format.printf(info => `[${info.timestamp}] [${info.level.toUpperCase()}]: ${info.message}`)

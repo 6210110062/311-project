@@ -2,6 +2,7 @@ import express from "express";
 import { v4 as uuid } from "uuid";
 const router = express.Router();
 import jwt from "jsonwebtoken"
+import logger from "../logger/logger.js"
 
 const TOKEN_SECRET = '5df67f71e28fe771a86e4a9ab8caf6e45bbec2f2892976ec2cf9ac7f7f6202c80b32ba180c86d1b0750cfcdb18f41617d1d11751508538cfadf74591c6681b8b'
 const authenticated = (req, res, next) => {
@@ -27,7 +28,8 @@ app.get('/users', authenticated, (req, res) => {
 app.post('/user', authenticated, async (req, res) => {
     const user = req.body;
     users.push({ ...user, id: uuid() });
-    res.send(" เพิ่มสำเร็จ ");
+    res.send(" เพิ่มสำเร็จ by");
+    logger.info('เพิ่มข้อมูล');
 })
 
 app.get('/user/:id', authenticated, (req, res) => {
@@ -38,6 +40,7 @@ app.get('/user/:id', authenticated, (req, res) => {
 app.delete('/user/:id', authenticated, (req, res) => {
     users = users.filter((user) => user.id !== req.params.id);
     res.send("ลบสำเร็จ");
+    logger.info('ลบข้อมูล');
 })
 
 app.put("/user/:id", authenticated, (req, res) => {
@@ -48,6 +51,7 @@ app.put("/user/:id", authenticated, (req, res) => {
     user.age = req.body.age;
 
     res.send(" แก่ไขสำเร็จ");
+    logger.info('แก้ไขข้อมูล');
 })
 
 export default app;

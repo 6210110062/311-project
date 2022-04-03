@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.get('/hello', authenticated, (req, res) => {
     res.send("hello");
-    logger.info('INFO Message');
+    logger.info('test hello');
 })
 
 app.use('/', userRoutes);
@@ -37,7 +37,7 @@ app.use('/', userRoutes);
  */
 app.get('/api/info', authenticated, (req, res) => {
     res.send({ ok: 1, username: req.username })
-    logger.error('Error Message');
+    logger.error(new Error('Error Message FROM api/info'));
 })
 
 
@@ -61,10 +61,9 @@ app.post('/api/login', bodyParser.json(), async (req, res) => {
     }
     let access_token = jwt.sign(data, TOKEN_SECRET, { expiresIn: "1800s" })
     res.send({ access_token, username: data.username })
-    logger.info('INFO Message');
+    logger.info('User Login');
 })
 
 app.listen(port, () =>
     console.log(`Server is listening on port: http://localhost:${port}`)
-    
 );
