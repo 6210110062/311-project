@@ -32,20 +32,24 @@ function Login() {
             setLogin(false);
         }
 
-
     }
 
     return (<div class="container">
         <Card style={{ width: '600px' }}>
             <Card.Header>
+
+
                 {!login &&
+
+
                     <FacebookLogin
-                        appId="684445912999982"
+                        appId="1111795056055256"
                         autoLoad={true}
                         fields="name,email,picture"
                         scope="public_profile,user_friends"
                         callback={responseFacebook}
                         icon="fa-facebook" />
+
                 }
                 {login &&
                     <Image src={picture} roundedCircle />
@@ -53,8 +57,10 @@ function Login() {
             </Card.Header>
             {login &&
                 <Card.Body>
+                    <Card.Title><p>Welcome</p></Card.Title>
                     <Card.Title>{data.name}</Card.Title>
                     <Card.Text>
+
                         {data.email}
                     </Card.Text>
                 </Card.Body>
