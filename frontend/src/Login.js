@@ -33,7 +33,7 @@ function Login() {
             <h1>Login with Facebook</h1>
             <br></br>
             <FacebookLogin
-                appId="1111795056055256"
+                appId="684445912999982"
                 autoLoad={true}
                 fields="name,email,picture"
                 callback={responseFacebook} />
