@@ -64,6 +64,6 @@ app.post('/api/login', bodyParser.json(), async (req, res) => {
     logger.info('User Login');
 })
 
-app.listen(port, () =>
-    console.log(`Server is listening on port: http://localhost:${port}`)
-);
+app.listen(port, () => {
+    logger.info('Listening on port ' + port);
+})
