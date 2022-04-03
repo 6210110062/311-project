@@ -28,7 +28,7 @@ app.get('/users', authenticated, (req, res) => {
 app.post('/user', authenticated, async (req, res) => {
     const user = req.body;
     users.push({ ...user, id: uuid() });
-    res.send(" เพิ่มสำเร็จ by");
+    res.send(" เพิ่มสำเร็จ ");
     logger.info('เพิ่มข้อมูล');
 })
 
